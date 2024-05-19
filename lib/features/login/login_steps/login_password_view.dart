@@ -5,6 +5,7 @@ import 'package:loomi_test/services/service_locator.dart';
 import 'package:loomi_test/support/utils/style/app_colors.dart';
 import 'package:loomi_test/support/utils/style/app_fonts.dart';
 
+import '../../../support/components/error_alert.dart';
 import 'components/login_form_field.dart';
 
 class LoginPasswordView extends StatelessWidget {
@@ -24,6 +25,12 @@ class LoginPasswordView extends StatelessWidget {
           key: formKey,
           child: Observer(
             builder: (_) {
+              if (controller.errorMessage.isNotEmpty && controller.isLoading == false) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  _dialogBuilder(context, controller);
+                });
+              }
+
               return LoginFormField(
                 label: "Qual sua senha?",
                 textEditingController: passwordEC,
@@ -34,10 +41,13 @@ class LoginPasswordView extends StatelessWidget {
                   onPressed: controller.changeIsPasswordObscure,
                   icon: const Icon(Icons.remove_red_eye),
                 ),
-                onPressed: () {
+                onPressed: () async {
                   if (formKey.currentState!.validate()) {
-                    controller.userLogin(email: userEmail, password: passwordEC.text);
-                    Navigator.pushReplacementNamed(context, '/home');
+                    final nav = Navigator.of(context);
+
+                    await controller.userLogin(email: userEmail, password: passwordEC.text);
+
+                    if (controller.errorMessage.isEmpty) nav.pushReplacementNamed('/home');
                   }
                 },
                 buttonChild: controller.isLoading
@@ -51,6 +61,21 @@ class LoginPasswordView extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _dialogBuilder(BuildContext context, LoginController controller) {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return ErrorAlert(
+          errorMessage: controller.errorMessage,
+          onPressed: () {
+            controller.changeErrorMessage('');
+            Navigator.popUntil(context, (route) => route.isFirst);
+          },
+        );
+      },
     );
   }
 }

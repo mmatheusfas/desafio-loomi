@@ -1,4 +1,5 @@
 import 'package:loomi_test/models/logged_user_model.dart';
+import 'package:loomi_test/repositories/errors/login_error.dart';
 import 'package:loomi_test/repositories/login/login_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,6 +26,10 @@ abstract class LoginControllerBase with Store {
   @observable
   bool _isPasswordObscure = true;
   bool get isPasswordObscure => _isPasswordObscure;
+
+  @observable
+  String _errorMessage = "";
+  String get errorMessage => _errorMessage;
 
   @action
   void changeIsPasswordObscure() {
@@ -61,17 +66,30 @@ abstract class LoginControllerBase with Store {
     _changeIsLoading(isLoading: true);
 
     try {
-      loggedUser = await loginRepository.login();
+      loggedUser = await loginRepository.login().catchError(
+        (e) {
+          throw LoginError(errorMessage: "Erro ao fazer login..");
+        },
+      );
       _saveLocalUser(
         email: email,
         password: password,
         user: loggedUser,
       );
+      changeErrorMessage('');
+      _changeIsLoading(isLoading: false);
+    } on LoginError catch (e) {
+      changeErrorMessage(e.errorMessage);
       _changeIsLoading(isLoading: false);
     } catch (e) {
+      changeErrorMessage("Algo inesperado aconteceu...");
       _changeIsLoading(isLoading: false);
-      throw Exception();
     }
+  }
+
+  @action
+  void changeErrorMessage(String errorMessage) {
+    _errorMessage = errorMessage;
   }
 
   void _saveLocalUser({required String email, required String password, required LoggedUserModel user}) async {
