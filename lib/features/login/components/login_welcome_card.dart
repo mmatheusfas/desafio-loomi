@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_test/support/style/app_assets.dart';
-import 'package:loomi_test/support/style/app_fonts.dart';
+import 'package:loomi_test/support/utils/style/app_assets.dart';
+import 'package:loomi_test/support/utils/style/app_fonts.dart';
 
-import '../../../support/style/app_colors.dart';
+import '../../../support/utils/style/app_colors.dart';
 
 class LoginWelcomeCard extends StatelessWidget {
   const LoginWelcomeCard({super.key});
@@ -10,7 +10,7 @@ class LoginWelcomeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         image: const DecorationImage(
@@ -22,16 +22,14 @@ class LoginWelcomeCard extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            bottom: 65,
-            left: 0,
-            right: 0,
+            bottom: 75,
             child: Text(
               "Entre \nem sua conta",
               style: AppFonts.archivoNarrowSemiBold(24, AppColors.white),
             ),
           ),
           Positioned(
-            bottom: 15,
+            bottom: 30,
             child: Text(
               "Acompanhe seus jogos,\ncampeonatos e times favoritos",
               style: AppFonts.montserratRegular(14, AppColors.white),

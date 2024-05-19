@@ -27,7 +27,7 @@ abstract class LoginControllerBase with Store {
   bool get isPasswordObscure => _isPasswordObscure;
 
   @action
-  void changeisPasswordObscure() {
+  void changeIsPasswordObscure() {
     _isPasswordObscure = !_isPasswordObscure;
   }
 

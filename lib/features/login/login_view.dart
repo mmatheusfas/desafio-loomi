@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_test/features/login/components/login_divider.dart';
 import 'package:loomi_test/features/login/components/social_login_button.dart';
-import 'package:loomi_test/support/style/app_assets.dart';
-import 'package:loomi_test/support/style/app_colors.dart';
-import 'package:loomi_test/support/style/app_fonts.dart';
+import 'package:loomi_test/support/utils/style/app_assets.dart';
+import 'package:loomi_test/support/utils/style/app_colors.dart';
+import 'package:loomi_test/support/utils/style/app_fonts.dart';
 
 import 'components/login_welcome_card.dart';
 
@@ -27,10 +27,9 @@ class LoginView extends StatelessWidget {
                   children: [
                     SocialLoginButton(
                       iconPath: AppAssets.icGoogle,
-                      textColor: Colors.black,
+                      textColor: AppColors.black,
                       backgroundColor: AppColors.lightGrey,
                       text: "Entrar com Google",
-                      icon: Icons.telegram,
                       onPressed: () {},
                     ),
                     const SizedBox(height: 12),
@@ -39,7 +38,6 @@ class LoginView extends StatelessWidget {
                       textColor: AppColors.white,
                       backgroundColor: AppColors.black,
                       text: "Entrar com Apple",
-                      icon: Icons.telegram,
                       onPressed: () {},
                     ),
                     const SizedBox(height: 40),
@@ -50,9 +48,6 @@ class LoginView extends StatelessWidget {
                       children: [
                         Expanded(
                           child: OutlinedButton(
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(100, 56),
-                            ),
                             onPressed: () {
                               Navigator.pushNamed(context, '/login-email');
                             },
@@ -68,7 +63,6 @@ class LoginView extends StatelessWidget {
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.yellow,
-                              minimumSize: const Size(100, 56),
                             ),
                             child: Text(
                               'Telefone',

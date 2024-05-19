@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_test/features/login/login_steps/components/login_form_field.dart';
-import 'package:loomi_test/support/style/app_colors.dart';
-import 'package:loomi_test/support/style/app_fonts.dart';
+import 'package:loomi_test/support/utils/style/app_colors.dart';
+import 'package:loomi_test/support/utils/style/app_fonts.dart';
 
 import '../../../services/service_locator.dart';
 import '../login_controller.dart';

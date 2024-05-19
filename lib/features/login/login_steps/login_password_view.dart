@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loomi_test/features/login/login_controller.dart';
 import 'package:loomi_test/services/service_locator.dart';
-import 'package:loomi_test/support/style/app_colors.dart';
-import 'package:loomi_test/support/style/app_fonts.dart';
+import 'package:loomi_test/support/utils/style/app_colors.dart';
+import 'package:loomi_test/support/utils/style/app_fonts.dart';
 
 import 'components/login_form_field.dart';
 
@@ -31,7 +31,7 @@ class LoginPasswordView extends StatelessWidget {
                 hintText: "Senha",
                 obscureText: controller.isPasswordObscure,
                 suffixIcon: IconButton(
-                  onPressed: controller.changeisPasswordObscure,
+                  onPressed: controller.changeIsPasswordObscure,
                   icon: const Icon(Icons.remove_red_eye),
                 ),
                 onPressed: () {
