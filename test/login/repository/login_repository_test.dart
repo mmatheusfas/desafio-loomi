@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:loomi_test/repositories/login/login_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../shared/login_shared.dart';
+import '../shared/login_shared.dart';
 
 class LoginRepositoryMock extends Mock implements LoginRepository {}
 
