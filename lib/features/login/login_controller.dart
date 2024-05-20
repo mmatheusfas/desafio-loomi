@@ -46,6 +46,11 @@ abstract class LoginControllerBase with Store {
     _isLoading = isLoading;
   }
 
+  @action
+  void changeErrorMessage(String errorMessage) {
+    _errorMessage = errorMessage;
+  }
+
   String? validatePassword(String? value) {
     if (value!.trim().isEmpty || value.length < 6) {
       return "Senha deve conter 6 caracteres";
@@ -85,11 +90,6 @@ abstract class LoginControllerBase with Store {
       changeErrorMessage("Algo inesperado aconteceu...");
       _changeIsLoading(isLoading: false);
     }
-  }
-
-  @action
-  void changeErrorMessage(String errorMessage) {
-    _errorMessage = errorMessage;
   }
 
   void _saveLocalUser({required String email, required String password, required LoggedUserModel user}) async {
