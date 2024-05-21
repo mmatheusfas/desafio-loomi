@@ -13,11 +13,11 @@ MatchModel _$MatchModelFromJson(Map<String, dynamic> json) => MatchModel(
       teamB: json['team_b'] as String,
       teamAImage: json['team_a_image'] as String,
       teamBImage: json['team_b_image'] as String,
-      teamAScore: json['team_a_score'] as String,
-      teamBScore: json['team_b_score'] as String,
-      xbet: json['1xbet_odds_avg'] as String,
-      betsafe: json['betsafe_odds_avg'] as String,
-      betsson: json['betsson_odds_avg'] as String,
+      teamAScore: (json['team_a_score'] as num).toInt(),
+      teamBScore: (json['team_b_score'] as num).toInt(),
+      xbet: (json['1xbet_odds_avg'] as num).toInt(),
+      betsafe: (json['betsafe_odds_avg'] as num).toInt(),
+      betsson: (json['betsson_odds_avg'] as num).toInt(),
     );
 
 Map<String, dynamic> _$MatchModelToJson(MatchModel instance) =>

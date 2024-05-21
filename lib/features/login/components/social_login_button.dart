@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_test/support/utils/style/app_fonts.dart';
+import 'package:loomi_ui/loomi_ui.dart';
 
 class SocialLoginButton extends StatelessWidget {
   const SocialLoginButton({

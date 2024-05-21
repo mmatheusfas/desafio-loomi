@@ -7,6 +7,8 @@ final getIt = GetIt.instance;
 
 void setupServices() {
   getIt.registerSingleton<Dio>(Dio());
+
+  //Login
   getIt.registerSingleton<LoginRepository>(LoginRepository(getIt.get<Dio>()));
   getIt.registerSingleton<LoginController>(LoginController(loginRepository: getIt.get<LoginRepository>()));
 }

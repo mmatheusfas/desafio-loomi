@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loomi_test/features/login/login_controller.dart';
 import 'package:loomi_test/services/service_locator.dart';
-import 'package:loomi_test/support/utils/style/app_colors.dart';
-import 'package:loomi_test/support/utils/style/app_fonts.dart';
+import 'package:loomi_ui/loomi_ui.dart';
 
 import '../../../support/components/error_alert.dart';
 import 'components/login_form_field.dart';

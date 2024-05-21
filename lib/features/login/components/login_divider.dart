@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_test/support/utils/style/app_colors.dart';
-import 'package:loomi_test/support/utils/style/app_fonts.dart';
+import 'package:loomi_ui/loomi_ui.dart';
 
 class LoginDivider extends StatelessWidget {
   const LoginDivider({super.key});

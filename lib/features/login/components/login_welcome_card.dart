@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_test/support/utils/style/app_assets.dart';
-import 'package:loomi_test/support/utils/style/app_fonts.dart';
-
-import '../../../support/utils/style/app_colors.dart';
+import 'package:loomi_test/support/utils/app_assets.dart';
+import 'package:loomi_ui/loomi_ui.dart';
 
 class LoginWelcomeCard extends StatelessWidget {
   const LoginWelcomeCard({super.key});

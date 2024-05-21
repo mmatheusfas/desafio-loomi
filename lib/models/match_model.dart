@@ -15,15 +15,15 @@ class MatchModel {
   @JsonKey(name: "team_b_image")
   final String teamBImage;
   @JsonKey(name: "team_a_score")
-  final String teamAScore;
+  final int teamAScore;
   @JsonKey(name: "team_b_score")
-  final String teamBScore;
+  final int teamBScore;
   @JsonKey(name: "1xbet_odds_avg")
-  final String xbet;
+  final int xbet;
   @JsonKey(name: "betsafe_odds_avg")
-  final String betsafe;
+  final int betsafe;
   @JsonKey(name: "betsson_odds_avg")
-  final String betsson;
+  final int betsson;
 
   MatchModel({
     required this.id,
