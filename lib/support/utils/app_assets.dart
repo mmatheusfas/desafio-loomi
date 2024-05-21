@@ -20,4 +20,6 @@ class AppAssets {
   static const String icEuroLeague = '${_assetsPath}ic_euro_league.png';
   static const String icSerieA = '${_assetsPath}ic_serie_a.png';
   static const String icLaLiga = '${_assetsPath}ic_la_liga.png';
+  static const String icSoccer = '${_assetsPath}ic_soccer.png';
+  static const String icFire = '${_assetsPath}ic_fire.png';
 }
