@@ -30,6 +30,16 @@ abstract class HomeControllerBase with Store {
     _isLoading = isLoading;
   }
 
+  void loadData() async {
+    _changeIsLoading(isLoading: true);
+    try {
+      await getMatches();
+      _changeIsLoading(isLoading: false);
+    } catch (e) {
+      throw Exception();
+    }
+  }
+
   Future<void> getChampionships() async {
     try {
       championships = await repository.getChampionships();
