@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:loomi_test/features/login/login_controller.dart';
-import 'package:loomi_test/repositories/login/login_repository.dart';
+import 'package:loomi_test/features/login/repository/login_repository.dart';
 
 final getIt = GetIt.instance;
 

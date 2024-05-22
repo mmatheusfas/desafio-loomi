@@ -1,10 +1,11 @@
-import 'package:loomi_test/models/bonus_model.dart';
-import 'package:loomi_test/models/championship_model.dart';
-import 'package:loomi_test/models/match_model.dart';
-import 'package:loomi_test/models/tips_model.dart';
-import 'package:loomi_test/models/won_bets_model.dart';
-import 'package:loomi_test/repositories/home/home_repository.dart';
+import 'package:loomi_test/features/home/models/bonus_model.dart';
+import 'package:loomi_test/features/home/models/match_model.dart';
+import 'package:loomi_test/features/home/models/tips_model.dart';
+import 'package:loomi_test/features/home/models/won_bets_model.dart';
 import 'package:mobx/mobx.dart';
+
+import 'models/championship_model.dart';
+import 'repository/home_repository.dart';
 
 part 'home_controller.g.dart';
 

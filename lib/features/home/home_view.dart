@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loomi_test/features/home/home_controller.dart';
-import 'package:loomi_test/repositories/home/home_repository.dart';
+import 'package:loomi_test/features/home/repository/home_repository.dart';
 import 'package:loomi_test/services/service_locator.dart';
 import 'package:loomi_test/support/components/gradient_background.dart';
 import 'package:loomi_ui/loomi_ui.dart';

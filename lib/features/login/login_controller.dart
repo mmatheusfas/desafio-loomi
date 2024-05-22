@@ -1,6 +1,6 @@
-import 'package:loomi_test/models/logged_user_model.dart';
+import 'package:loomi_test/features/login/models/logged_user_model.dart';
+import 'package:loomi_test/features/login/repository/login_repository.dart';
 import 'package:loomi_test/repositories/errors/login_error.dart';
-import 'package:loomi_test/repositories/login/login_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

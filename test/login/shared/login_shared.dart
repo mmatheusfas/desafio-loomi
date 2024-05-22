@@ -1,5 +1,5 @@
-import 'package:loomi_test/models/logged_user_model.dart';
-import 'package:loomi_test/repositories/login/login_repository.dart';
+import 'package:loomi_test/features/login/models/logged_user_model.dart';
+import 'package:loomi_test/features/login/repository/login_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
 class LoginShared {

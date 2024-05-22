@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:loomi_test/features/home/home_controller.dart';
-import 'package:loomi_test/repositories/home/home_repository.dart';
+import 'package:loomi_test/features/home/repository/home_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../shared/home_shared.dart';
