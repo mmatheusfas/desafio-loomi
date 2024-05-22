@@ -5,9 +5,10 @@ import 'package:loomi_test/features/home/home_controller.dart';
 import 'package:loomi_test/repositories/home/home_repository.dart';
 import 'package:loomi_test/services/service_locator.dart';
 import 'package:loomi_test/support/components/gradient_background.dart';
-import 'package:loomi_test/support/components/horizontal_list_view.dart';
-import 'package:loomi_test/support/utils/app_assets.dart';
 import 'package:loomi_ui/loomi_ui.dart';
+
+import '../../support/components/horizontal_list_view.dart';
+import '../../support/utils/app_assets.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -29,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return GradientBackground(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+        padding: const EdgeInsets.only(bottom: 16, right: 20, left: 20),
         child: Observer(
           builder: (_) {
             if (controller.isLoading) {
@@ -143,7 +144,23 @@ class _HomeViewState extends State<HomeView> {
                   BonusCard(platform: controller.bonus[2].platform, discount: controller.bonus[2].discount),
                   const SizedBox(height: 12),
                   const TextButtonRow(label: "Veja mais bônus disponíveis"),
-                  // const SectionHeader(sectionName: "Últimas apostas ganhas", iconPath: AppAssets.icFire),
+                  const SizedBox(height: 32),
+                  const SectionHeader(sectionName: "Últimas apostas ganhas", iconPath: AppAssets.icFire),
+                  const SizedBox(height: 12),
+                  HorizontalListView(
+                    height: 96,
+                    itemCount: controller.wonBets.length,
+                    itemBuilder: (_, index) {
+                      final wonBet = controller.wonBets[index];
+
+                      return WonBetCard(
+                        userAvatarPath: wonBet.userAvatar,
+                        userName: wonBet.user,
+                        platform: wonBet.platform,
+                        score: wonBet.score,
+                      );
+                    },
+                  ),
                 ],
               ),
             );

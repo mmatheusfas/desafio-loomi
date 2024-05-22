@@ -37,6 +37,7 @@ abstract class HomeControllerBase with Store {
       await getTips();
       await getChampionships();
       await getBonus();
+      await getWonBets();
       _changeIsLoading(isLoading: false);
     } catch (e) {
       throw Exception();
