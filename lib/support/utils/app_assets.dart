@@ -36,4 +36,5 @@ class AppAssets {
   static const String icWhistleFilled = '${_assetsPath}ic_whistle_filled.png';
   static const String icBasketball = '${_assetsPath}ic_basketball.png';
   static const String icEsports = '${_assetsPath}ic_esports.png';
+  static const String icArrowBack = '${_assetsPath}ic_arrow_back.png';
 }
