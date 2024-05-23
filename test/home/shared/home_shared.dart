@@ -57,11 +57,11 @@ class HomeShared {
       userAvatar: "Test 1",
       platform: "Test 1",
       score: 200.00,
-    )
+    ),
   ];
 
   static void arrangeChampionships(HomeRepository repository) {
-    when(() => repository.getChampionships()).thenAnswer((_) async => Future.value(_mockedChampionships));
+    when(() => repository.getChampionships(1)).thenAnswer((_) async => Future.value(_mockedChampionships));
   }
 
   static void arrangeMatchs(HomeRepository repository) {
@@ -69,7 +69,7 @@ class HomeShared {
   }
 
   static void arrangeTips(HomeRepository repository) {
-    when(() => repository.getTips()).thenAnswer((_) async => Future.value(_mockedTips));
+    when(() => repository.getTips(1)).thenAnswer((_) async => Future.value(_mockedTips));
   }
 
   static void arrangeBonus(HomeRepository repository) {
@@ -77,6 +77,6 @@ class HomeShared {
   }
 
   static void arrangeWonBets(HomeRepository repository) {
-    when(() => repository.getWonBets()).thenAnswer((_) async => Future.value(_mockedWonBets));
+    when(() => repository.getWonBets(1)).thenAnswer((_) async => Future.value(_mockedWonBets));
   }
 }

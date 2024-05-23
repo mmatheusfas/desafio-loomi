@@ -24,9 +24,9 @@ void main() {
       test("Test getChampionships", () async {
         HomeShared.arrangeChampionships(repository);
 
-        final result = await repository.getChampionships();
+        final result = await repository.getChampionships(1);
 
-        verify(() => repository.getChampionships()).called(1);
+        verify(() => repository.getChampionships(1)).called(1);
         expect(result, isA<List<ChampionshipModel>>());
         expect(result.length, 1);
         expect(result[0].id, "1");
@@ -46,9 +46,9 @@ void main() {
       test("Test getTips", () async {
         HomeShared.arrangeTips(repository);
 
-        final result = await repository.getTips();
+        final result = await repository.getTips(1);
 
-        verify(() => repository.getTips()).called(1);
+        verify(() => repository.getTips(1)).called(1);
         expect(result, isA<List<TipsModel>>());
         expect(result.length, 1);
         expect(result[0].id, "1");
@@ -68,9 +68,9 @@ void main() {
       test("Test getWonBets", () async {
         HomeShared.arrangeWonBets(repository);
 
-        final result = await repository.getWonBets();
+        final result = await repository.getWonBets(1);
 
-        verify(() => repository.getWonBets()).called(1);
+        verify(() => repository.getWonBets(1)).called(1);
         expect(result, isA<List<WonBetsModel>>());
         expect(result.length, 1);
         expect(result[0].id, "1");
