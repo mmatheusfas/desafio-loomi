@@ -2,7 +2,7 @@ import 'package:loomi_test/features/home/models/bonus_model.dart';
 import 'package:loomi_test/features/home/models/match_model.dart';
 import 'package:loomi_test/features/home/models/tips_model.dart';
 import 'package:loomi_test/features/home/models/won_bets_model.dart';
-import 'package:loomi_test/repositories/errors/home_error.dart';
+import 'package:loomi_test/features/home/repository/errors/home_error.dart';
 import 'package:mobx/mobx.dart';
 
 import 'models/championship_model.dart';
@@ -25,11 +25,20 @@ abstract class HomeControllerBase with Store {
   String _errorMessage = '';
   String get errorMessage => _errorMessage;
 
-  List<ChampionshipModel> championships = [];
-  List<MatchModel> matches = [];
-  List<TipsModel> tips = [];
-  List<BonusModel> bonus = [];
-  List<WonBetsModel> wonBets = [];
+  List<ChampionshipModel> _championships = [];
+  List<ChampionshipModel> get championships => _championships;
+
+  List<MatchModel> _matches = [];
+  List<MatchModel> get matches => _matches;
+
+  List<TipsModel> _tips = [];
+  List<TipsModel> get tips => _tips;
+
+  List<BonusModel> _bonus = [];
+  List<BonusModel> get bonus => _bonus;
+
+  List<WonBetsModel> _wonBets = [];
+  List<WonBetsModel> get wonBets => _wonBets;
 
   int _championshipPage = 1;
   int _tipsPage = 1;
@@ -66,8 +75,10 @@ abstract class HomeControllerBase with Store {
     _changeIsLoading(isLoading: true);
     try {
       await fetchFunction();
+    } on HomeError catch (e) {
+      changeErrorMessage(e.errorMessage);
     } catch (e) {
-      throw Exception(e.toString());
+      changeErrorMessage("Algo inesperado aconteceu... Tente novamente");
     } finally {
       _changeIsLoading(isLoading: false);
     }
@@ -91,23 +102,23 @@ abstract class HomeControllerBase with Store {
   @action
   Future<void> getChampionships() async {
     try {
-      championships += await repository.getChampionships(_championshipPage).catchError(
-        (_) {
-          throw HomeError(errorMessage: "Erro ao buscar campeonatos...");
-        },
-      );
-    } catch (_) {
+      _championships += await repository.getChampionships(_championshipPage).catchError(
+            (_) => throw HomeError(errorMessage: "Erro ao buscar campeonatos..."),
+          );
+    } on HomeError catch (e) {
+      throw HomeError(errorMessage: e.errorMessage);
+    } catch (e) {
       throw Exception();
     }
   }
 
   Future<void> getMatches() async {
     try {
-      matches = await repository.getMatches().catchError(
-        (_) {
-          throw HomeError(errorMessage: "Erro ao buscar partidas...");
-        },
-      );
+      _matches = await repository.getMatches().catchError(
+            (_) => throw HomeError(errorMessage: "Erro ao buscar partidas..."),
+          );
+    } on HomeError catch (e) {
+      throw HomeError(errorMessage: e.errorMessage);
     } catch (e) {
       throw Exception();
     }
@@ -115,11 +126,11 @@ abstract class HomeControllerBase with Store {
 
   Future<void> getTips() async {
     try {
-      tips += await repository.getTips(_tipsPage).catchError(
-        (_) {
-          throw HomeError(errorMessage: "Erro ao buscar dicas...");
-        },
-      );
+      _tips += await repository.getTips(_tipsPage).catchError(
+            (_) => throw HomeError(errorMessage: "Erro ao buscar dicas..."),
+          );
+    } on HomeError catch (e) {
+      throw HomeError(errorMessage: e.errorMessage);
     } catch (e) {
       throw Exception();
     }
@@ -127,11 +138,11 @@ abstract class HomeControllerBase with Store {
 
   Future<void> getBonus() async {
     try {
-      bonus = await repository.getBonus().catchError(
-        (_) {
-          throw HomeError(errorMessage: "Erro ao buscar bonus de aposta...");
-        },
-      );
+      _bonus = await repository.getBonus().catchError(
+            (_) => throw HomeError(errorMessage: "Erro ao buscar bonus de aposta..."),
+          );
+    } on HomeError catch (e) {
+      throw HomeError(errorMessage: e.errorMessage);
     } catch (e) {
       throw Exception();
     }
@@ -139,11 +150,11 @@ abstract class HomeControllerBase with Store {
 
   Future<void> getWonBets() async {
     try {
-      wonBets += await repository.getWonBets(_wonBetsPage).catchError(
-        (_) {
-          throw HomeError(errorMessage: "Erro ao buscar apostas ganhas...");
-        },
-      );
+      _wonBets += await repository.getWonBets(_wonBetsPage).catchError(
+            (_) => throw HomeError(errorMessage: "Erro ao buscar apostas ganhas..."),
+          );
+    } on HomeError catch (e) {
+      throw HomeError(errorMessage: e.errorMessage);
     } catch (e) {
       throw Exception();
     }
