@@ -21,7 +21,7 @@ class _HomeRepository implements HomeRepository {
   String? baseUrl;
 
   @override
-  Future<List<ChampionshipModel>> getChampionships() async {
+  Future<List<ChampionshipModel>> getChampionships(int page) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -34,7 +34,7 @@ class _HomeRepository implements HomeRepository {
     )
             .compose(
               _dio.options,
-              '/championships',
+              '/championships?l=8&p=${page}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -80,7 +80,7 @@ class _HomeRepository implements HomeRepository {
   }
 
   @override
-  Future<List<TipsModel>> getTips() async {
+  Future<List<TipsModel>> getTips(int page) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -93,7 +93,7 @@ class _HomeRepository implements HomeRepository {
     )
             .compose(
               _dio.options,
-              '/tips',
+              '/tips?l=5&p=${page}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -138,7 +138,7 @@ class _HomeRepository implements HomeRepository {
   }
 
   @override
-  Future<List<WonBetsModel>> getWonBets() async {
+  Future<List<WonBetsModel>> getWonBets(int page) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -151,7 +151,7 @@ class _HomeRepository implements HomeRepository {
     )
             .compose(
               _dio.options,
-              '/won_bets',
+              '/won_bets?l=5&p=${page}',
               queryParameters: queryParameters,
               data: _data,
             )

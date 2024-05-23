@@ -2,6 +2,7 @@ import 'package:loomi_test/features/home/models/bonus_model.dart';
 import 'package:loomi_test/features/home/models/match_model.dart';
 import 'package:loomi_test/features/home/models/tips_model.dart';
 import 'package:loomi_test/features/home/models/won_bets_model.dart';
+import 'package:loomi_test/repositories/errors/home_error.dart';
 import 'package:mobx/mobx.dart';
 
 import 'models/championship_model.dart';
@@ -20,15 +21,28 @@ abstract class HomeControllerBase with Store {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
+  @observable
+  String _errorMessage = '';
+  String get errorMessage => _errorMessage;
+
   List<ChampionshipModel> championships = [];
   List<MatchModel> matches = [];
   List<TipsModel> tips = [];
   List<BonusModel> bonus = [];
   List<WonBetsModel> wonBets = [];
 
+  int _championshipPage = 1;
+  int _tipsPage = 1;
+  int _wonBetsPage = 1;
+
   @action
   void _changeIsLoading({required bool isLoading}) {
     _isLoading = isLoading;
+  }
+
+  @action
+  void changeErrorMessage(String errorMessage) {
+    _errorMessage = errorMessage;
   }
 
   void loadData() async {
@@ -39,23 +53,61 @@ abstract class HomeControllerBase with Store {
       await getChampionships();
       await getBonus();
       await getWonBets();
-      _changeIsLoading(isLoading: false);
+    } on HomeError catch (e) {
+      changeErrorMessage(e.errorMessage);
     } catch (e) {
-      throw Exception();
+      changeErrorMessage("Algo inesperado aconteceu... Tente novamente");
+    } finally {
+      _changeIsLoading(isLoading: false);
     }
   }
 
+  Future<void> _getMoreItems(Future<void> Function() fetchFunction) async {
+    _changeIsLoading(isLoading: true);
+    try {
+      await fetchFunction();
+    } catch (e) {
+      throw Exception(e.toString());
+    } finally {
+      _changeIsLoading(isLoading: false);
+    }
+  }
+
+  void getMoreChampionships() async {
+    _championshipPage++;
+    _getMoreItems(getChampionships);
+  }
+
+  void getMoreTips() async {
+    _tipsPage++;
+    _getMoreItems(getTips);
+  }
+
+  void getMoreWonBets() async {
+    _wonBetsPage++;
+    _getMoreItems(getWonBets);
+  }
+
+  @action
   Future<void> getChampionships() async {
     try {
-      championships = await repository.getChampionships();
-    } catch (e) {
+      championships += await repository.getChampionships(_championshipPage).catchError(
+        (_) {
+          throw HomeError(errorMessage: "Erro ao buscar campeonatos...");
+        },
+      );
+    } catch (_) {
       throw Exception();
     }
   }
 
   Future<void> getMatches() async {
     try {
-      matches = await repository.getMatches();
+      matches = await repository.getMatches().catchError(
+        (_) {
+          throw HomeError(errorMessage: "Erro ao buscar partidas...");
+        },
+      );
     } catch (e) {
       throw Exception();
     }
@@ -63,7 +115,11 @@ abstract class HomeControllerBase with Store {
 
   Future<void> getTips() async {
     try {
-      tips = await repository.getTips();
+      tips += await repository.getTips(_tipsPage).catchError(
+        (_) {
+          throw HomeError(errorMessage: "Erro ao buscar dicas...");
+        },
+      );
     } catch (e) {
       throw Exception();
     }
@@ -71,7 +127,11 @@ abstract class HomeControllerBase with Store {
 
   Future<void> getBonus() async {
     try {
-      bonus = await repository.getBonus();
+      bonus = await repository.getBonus().catchError(
+        (_) {
+          throw HomeError(errorMessage: "Erro ao buscar bonus de aposta...");
+        },
+      );
     } catch (e) {
       throw Exception();
     }
@@ -79,7 +139,11 @@ abstract class HomeControllerBase with Store {
 
   Future<void> getWonBets() async {
     try {
-      wonBets = await repository.getWonBets();
+      wonBets += await repository.getWonBets(_wonBetsPage).catchError(
+        (_) {
+          throw HomeError(errorMessage: "Erro ao buscar apostas ganhas...");
+        },
+      );
     } catch (e) {
       throw Exception();
     }

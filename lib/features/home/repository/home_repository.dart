@@ -14,18 +14,18 @@ part 'home_repository.g.dart';
 abstract interface class HomeRepository {
   factory HomeRepository(Dio dio, {String baseUrl}) = _HomeRepository;
 
-  @GET("/championships")
-  Future<List<ChampionshipModel>> getChampionships();
+  @GET("/championships?l=8&p={page}")
+  Future<List<ChampionshipModel>> getChampionships(@Path('page') int page);
 
   @GET("/matches")
   Future<List<MatchModel>> getMatches();
 
-  @GET("/tips")
-  Future<List<TipsModel>> getTips();
+  @GET("/tips?l=5&p={page}")
+  Future<List<TipsModel>> getTips(@Path('page') int page);
 
   @GET("/bonus")
   Future<List<BonusModel>> getBonus();
 
-  @GET("/won_bets")
-  Future<List<WonBetsModel>> getWonBets();
+  @GET("/won_bets?l=5&p={page}")
+  Future<List<WonBetsModel>> getWonBets(@Path('page') int page);
 }

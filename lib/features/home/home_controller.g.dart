@@ -25,6 +25,30 @@ mixin _$HomeController on HomeControllerBase, Store {
     });
   }
 
+  late final _$_errorMessageAtom =
+      Atom(name: 'HomeControllerBase._errorMessage', context: context);
+
+  @override
+  String get _errorMessage {
+    _$_errorMessageAtom.reportRead();
+    return super._errorMessage;
+  }
+
+  @override
+  set _errorMessage(String value) {
+    _$_errorMessageAtom.reportWrite(value, super._errorMessage, () {
+      super._errorMessage = value;
+    });
+  }
+
+  late final _$getChampionshipsAsyncAction =
+      AsyncAction('HomeControllerBase.getChampionships', context: context);
+
+  @override
+  Future<void> getChampionships() {
+    return _$getChampionshipsAsyncAction.run(() => super.getChampionships());
+  }
+
   late final _$HomeControllerBaseActionController =
       ActionController(name: 'HomeControllerBase', context: context);
 
@@ -34,6 +58,17 @@ mixin _$HomeController on HomeControllerBase, Store {
         name: 'HomeControllerBase._changeIsLoading');
     try {
       return super._changeIsLoading(isLoading: isLoading);
+    } finally {
+      _$HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeErrorMessage(String errorMessage) {
+    final _$actionInfo = _$HomeControllerBaseActionController.startAction(
+        name: 'HomeControllerBase.changeErrorMessage');
+    try {
+      return super.changeErrorMessage(errorMessage);
     } finally {
       _$HomeControllerBaseActionController.endAction(_$actionInfo);
     }
