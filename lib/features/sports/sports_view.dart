@@ -33,7 +33,7 @@ class _SportsViewState extends State<SportsView> {
     return Scaffold(
       body: GradientBackground(
         child: Padding(
-          padding: const EdgeInsets.only(top: 40, left: 12, right: 12, bottom: 12),
+          padding: const EdgeInsets.only(top: 64, left: 12, right: 12, bottom: 12),
           child: Column(
             children: [
               Row(
@@ -47,28 +47,13 @@ class _SportsViewState extends State<SportsView> {
                 ],
               ),
               const SizedBox(height: 16),
-              TextField(
+              const TextField(
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(
+                  prefixIcon: Icon(
                     Icons.search_sharp,
                     color: AppColors.black,
                   ),
                   hintText: "Pesquisar...",
-                  filled: true,
-                  fillColor: AppColors.white,
-                  focusColor: AppColors.white,
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: AppColors.lightGrey),
-                    borderRadius: BorderRadius.circular(48),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: AppColors.lightGrey),
-                    borderRadius: BorderRadius.circular(48),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: AppColors.lightGrey),
-                    borderRadius: BorderRadius.circular(48),
-                  ),
                 ),
               ),
               const SizedBox(height: 16),
