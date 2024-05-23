@@ -9,6 +9,7 @@ import 'package:loomi_test/support/components/horizontal_list_view.dart';
 import 'package:loomi_test/support/extensions/dialog_extensions.dart';
 import 'package:loomi_ui/loomi_ui.dart';
 
+import '../../support/components/default_loader.dart';
 import '../../support/components/error_alert.dart';
 import '../../support/utils/app_assets.dart';
 
@@ -76,7 +77,7 @@ class _HomeViewState extends State<HomeView> {
             }
 
             if (controller.isLoading && controller.championships.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
+              return const DefaultLoader();
             }
 
             return SingleChildScrollView(
