@@ -1,17 +1,21 @@
 import 'package:loomi_test/features/login/models/logged_user_model.dart';
+import 'package:loomi_test/features/login/repository/errors/login_error.dart';
 import 'package:loomi_test/features/login/repository/login_repository.dart';
-import 'package:loomi_test/repositories/errors/login_error.dart';
+import 'package:loomi_test/services/local_storage/local_storage.dart';
 import 'package:mobx/mobx.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'login_controller.g.dart';
 
 class LoginController = LoginControllerBase with _$LoginController;
 
 abstract class LoginControllerBase with Store {
-  LoginControllerBase({required this.loginRepository});
+  LoginControllerBase({
+    required this.localStorage,
+    required this.loginRepository,
+  });
 
   final LoginRepository loginRepository;
+  final LocalStorage localStorage;
 
   late LoggedUserModel loggedUser;
 
@@ -82,22 +86,19 @@ abstract class LoginControllerBase with Store {
         user: loggedUser,
       );
       changeErrorMessage('');
-      _changeIsLoading(isLoading: false);
     } on LoginError catch (e) {
       changeErrorMessage(e.errorMessage);
-      _changeIsLoading(isLoading: false);
     } catch (e) {
       changeErrorMessage("Algo inesperado aconteceu...");
+    } finally {
       _changeIsLoading(isLoading: false);
     }
   }
 
   void _saveLocalUser({required String email, required String password, required LoggedUserModel user}) async {
-    SharedPreferences sp = await SharedPreferences.getInstance();
-
-    sp.setString("user_email", email);
-    sp.setString("user_password", password);
-    sp.setString("auth_token", user.authToken);
-    sp.setString("refresh_token", user.refreshToken);
+    localStorage.saveData("user_email", email);
+    localStorage.saveData("user_password", password);
+    localStorage.saveData("auth_token", user.authToken);
+    localStorage.saveData("refresh_token", user.refreshToken);
   }
 }

@@ -2,14 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:loomi_test/features/login/login_controller.dart';
 import 'package:loomi_test/services/service_locator.dart';
+import 'package:loomi_test/support/extensions/dialog_extensions.dart';
 import 'package:loomi_ui/loomi_ui.dart';
 
 import '../../../support/components/error_alert.dart';
 import 'components/login_form_field.dart';
 
-class LoginPasswordView extends StatelessWidget {
+class LoginPasswordView extends StatefulWidget {
   const LoginPasswordView({super.key});
 
+  @override
+  State<LoginPasswordView> createState() => _LoginPasswordViewState();
+}
+
+class _LoginPasswordViewState extends State<LoginPasswordView> {
   @override
   Widget build(BuildContext context) {
     final LoginController controller = getIt.get();
@@ -26,7 +32,15 @@ class LoginPasswordView extends StatelessWidget {
             builder: (_) {
               if (controller.errorMessage.isNotEmpty && controller.isLoading == false) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
-                  _dialogBuilder(context, controller);
+                  showCustomDialog(
+                    dialog: ErrorAlert(
+                      errorMessage: controller.errorMessage,
+                      onPressed: () {
+                        controller.changeErrorMessage('');
+                        Navigator.popUntil(context, (route) => route.isFirst);
+                      },
+                    ),
+                  );
                 });
               }
 
@@ -60,21 +74,6 @@ class LoginPasswordView extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  void _dialogBuilder(BuildContext context, LoginController controller) {
-    showDialog(
-      context: context,
-      builder: (_) {
-        return ErrorAlert(
-          errorMessage: controller.errorMessage,
-          onPressed: () {
-            controller.changeErrorMessage('');
-            Navigator.popUntil(context, (route) => route.isFirst);
-          },
-        );
-      },
     );
   }
 }
