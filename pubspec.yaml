@@ -43,6 +43,8 @@ dependencies:
   google_fonts: ^6.2.1
   mobx: ^2.3.3+2
   flutter_mobx: ^2.2.1
+  loomi_ui:
+    path: ../loomi_ui
  
 dev_dependencies:
   flutter_test:

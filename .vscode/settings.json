@@ -8,7 +8,6 @@
     "editor.fontSize": 17,
     "editor.minimap.enabled": false,
     "editor.suggestSelection": "first",
-  
     //Personal explorer preferences
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
@@ -19,6 +18,8 @@
     "terminal.integrated.fontSize": 16,
     "diffEditor.ignoreTrimWhitespace": false,
     "security.workspace.trust.untrustedFiles": "open",
+    "debug.toolBarLocation": "commandCenter",
+
   
     // Spellcheck preferences
     "cSpell.language": "en, pt_BR",

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:loomi_test/features/login/components/login_divider.dart';
 import 'package:loomi_test/features/login/components/social_login_button.dart';
-import 'package:loomi_test/support/utils/style/app_assets.dart';
-import 'package:loomi_test/support/utils/style/app_colors.dart';
-import 'package:loomi_test/support/utils/style/app_fonts.dart';
+import 'package:loomi_test/support/utils/app_assets.dart';
+import 'package:loomi_ui/loomi_ui.dart';
 
 import 'components/login_welcome_card.dart';
 

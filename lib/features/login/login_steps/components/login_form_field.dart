@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../support/utils/style/app_colors.dart';
-import '../../../../support/utils/style/app_fonts.dart';
+import 'package:loomi_ui/loomi_ui.dart';
 
 class LoginFormField extends StatelessWidget {
   const LoginFormField({

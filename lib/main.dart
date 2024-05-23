@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:loomi_test/features/home/home_view.dart';
+import 'package:loomi_test/features/bottom_navigation/bottom_navigation_view.dart';
 import 'package:loomi_test/features/login/login_steps/login_email_view.dart';
 import 'package:loomi_test/features/login/login_steps/login_password_view.dart';
 import 'package:loomi_test/features/login/login_view.dart';
+import 'package:loomi_test/features/sports/sports_view.dart';
 import 'package:loomi_test/services/service_locator.dart';
-import 'package:loomi_test/support/utils/style/app_theme.dart';
+import 'package:loomi_ui/loomi_ui.dart';
 
 void main() {
   setupServices();
@@ -25,7 +26,8 @@ class MyApp extends StatelessWidget {
         '/': (_) => const LoginView(),
         '/login-email': (_) => const LoginEmailView(),
         '/login-password': (_) => const LoginPasswordView(),
-        '/home': (_) => const HomeView(),
+        '/home': (_) => const BottomNavigationView(),
+        '/sports': (_) => const SportsView(),
       },
     );
   }
