@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loomi_ui/loomi_ui.dart';
 
 class GradientBackground extends StatelessWidget {
   const GradientBackground({super.key, required this.child});
@@ -12,10 +13,7 @@ class GradientBackground extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.center,
-          colors: [
-            Color.fromRGBO(196, 178, 58, 0.1),
-            Colors.white,
-          ],
+          colors: [AppColors.ultraLightYellow, AppColors.white],
         ),
       ),
       child: child,
