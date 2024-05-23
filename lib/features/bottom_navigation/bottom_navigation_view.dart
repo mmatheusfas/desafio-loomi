@@ -16,7 +16,12 @@ class BottomNavigationView extends StatelessWidget {
         topSectionLabel: "Ajuda e suporte",
         middleSectionMenuItems: [
           SideMenuItem(iconPath: AppAssets.icHome, label: "Início", onTapItem: () {}),
-          SideMenuItem(iconPath: AppAssets.icWhistle, label: "Esportes", onTapItem: () {}),
+          SideMenuItem(
+              iconPath: AppAssets.icWhistle,
+              label: "Esportes",
+              onTapItem: () {
+                Navigator.pushNamed(context, '/sports');
+              }),
           SideMenuItem(iconPath: AppAssets.icBookmark, label: "Notícias e Dicas", onTapItem: () {}),
           SideMenuItem(iconPath: AppAssets.icStar, label: "Favoritos", onTapItem: () {}),
           SideMenuItem(iconPath: AppAssets.icThreeUser, label: "Influenciadores", onTapItem: () {}),
@@ -43,6 +48,23 @@ class BottomNavigationView extends StatelessWidget {
             onTapMenu: () {
               Scaffold.of(context).openDrawer();
             },
+            items: const [
+              BottomNavigationItem(
+                unselectedIconPath: AppAssets.icHome,
+                selectedIconPath: AppAssets.icHomeFilled,
+                isSelected: true,
+              ),
+              BottomNavigationItem(
+                unselectedIconPath: AppAssets.icWhistle,
+                selectedIconPath: AppAssets.icWhistleFilled,
+                isSelected: false,
+              ),
+              BottomNavigationItem(
+                unselectedIconPath: AppAssets.icBookmark,
+                selectedIconPath: AppAssets.icBookmarkFilled,
+                isSelected: false,
+              )
+            ],
           );
         },
       ),
